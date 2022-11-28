@@ -40,15 +40,15 @@ class DatabaseHelper {
         overview TEXT,
         posterPath TEXT
       );
-
+      
+    ''');
+    await db.execute('''
       CREATE TABLE  $_tblTvShowWatchlist (
         id INTEGER PRIMARY KEY,
         name TEXT,
         overview TEXT,
         backdropPath TEXT
-        voteAverage REAL
       );
-
     ''');
   }
 

@@ -14,10 +14,10 @@ class TvShowDetail extends Equatable {
 
   final String? backdropPath;
   final int id;
-  final String? name;
-  final String? overview;
+  final String name;
+  final String overview;
   final String? posterPath;
-  final double? voteAverage;
+  final double voteAverage;
   final List<TvSeason>? seasons;
 
   @override

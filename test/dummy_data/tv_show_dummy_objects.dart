@@ -41,7 +41,6 @@ final testTvShowTable = TvShowTable(
   name: 'name',
   backdropPath: 'backdropPath',
   overview: 'overview',
-  voteAverage: 3.0,
 );
 
 final testTvShowMap = {
@@ -57,5 +56,4 @@ final testWatchlistTvShow = TvShow.watchlist(
   name: 'name',
   backdropPath: 'backdropPath',
   overview: 'overview',
-  voteAverage: 3.0,
 );

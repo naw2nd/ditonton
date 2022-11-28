@@ -13,10 +13,9 @@ class TvShow extends Equatable {
   final int id;
   final String? name;
   final String? overview;
-  final double? voteAverage;
+  double? voteAverage;
 
   TvShow.watchlist({
-    required this.voteAverage,
     required this.id,
     required this.overview,
     required this.backdropPath,

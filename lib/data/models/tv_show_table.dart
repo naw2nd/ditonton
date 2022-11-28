@@ -7,14 +7,12 @@ class TvShowTable extends Equatable {
   final String? backdropPath;
   final String? name;
   final String? overview;
-  final double? voteAverage;
 
   TvShowTable({
     required this.id,
     required this.name,
     required this.backdropPath,
     required this.overview,
-    required this.voteAverage,
   });
 
   factory TvShowTable.fromEntity(TvShowDetail tvShow) => TvShowTable(
@@ -22,7 +20,6 @@ class TvShowTable extends Equatable {
         name: tvShow.name,
         backdropPath: tvShow.backdropPath,
         overview: tvShow.overview,
-        voteAverage: tvShow.voteAverage,
       );
 
   factory TvShowTable.fromMap(Map<String, dynamic> map) => TvShowTable(
@@ -30,7 +27,6 @@ class TvShowTable extends Equatable {
         name: map['name'],
         backdropPath: map['backdropPath'],
         overview: map['overview'],
-        voteAverage: map['voteAverage'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -38,7 +34,6 @@ class TvShowTable extends Equatable {
         'name': name,
         'backdropPath': backdropPath,
         'overview': overview,
-        'voteAverage': voteAverage,
       };
 
   TvShow toEntity() => TvShow.watchlist(
@@ -46,7 +41,6 @@ class TvShowTable extends Equatable {
         backdropPath: backdropPath,
         overview: overview,
         name: name,
-        voteAverage: voteAverage,
       );
 
   @override
@@ -55,6 +49,5 @@ class TvShowTable extends Equatable {
         name,
         backdropPath,
         overview,
-        voteAverage,
       ];
 }
