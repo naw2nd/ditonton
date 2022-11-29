@@ -27,7 +27,7 @@ void main() {
   });
 
   final tTvShowModel = TvShow(
-    backdropPath: 'backdropPath',
+    posterPath: 'backdropPath',
     id: 1,
     name: 'name',
     overview: 'overview',

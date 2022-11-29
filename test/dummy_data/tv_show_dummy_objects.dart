@@ -3,6 +3,16 @@ import 'package:ditonton/domain/entities/tv_season.dart';
 import 'package:ditonton/domain/entities/tv_show.dart';
 import 'package:ditonton/domain/entities/tv_show_detail.dart';
 
+final testTvShow = TvShow(
+  posterPath: 'posterPath',
+  id: 1,
+  name: 'name',
+  overview: 'overview',
+  voteAverage: 3.0,
+);
+
+final testTvShowList = [testTvShow];
+
 final testTvShowDetail = TvShowDetail(
   backdropPath: 'backdropPath',
   id: 1,
@@ -12,10 +22,9 @@ final testTvShowDetail = TvShowDetail(
   voteAverage: 3.0,
   seasons: testSeasonList,
 );
-
 final testSeasonList = [
   TvSeason(
-    airDate: DateTime.utc(2020,1,1),
+    airDate: DateTime.utc(2020, 1, 1),
     episodeCount: 2,
     id: 1,
     name: 'season 1 name',
@@ -24,7 +33,7 @@ final testSeasonList = [
     seasonNumber: 1,
   ),
   TvSeason(
-    airDate: DateTime.utc(2020,1,1),
+    airDate: DateTime.utc(2020, 1, 1),
     episodeCount: 2,
     id: 2,
     name: 'season 2 name',
@@ -34,19 +43,17 @@ final testSeasonList = [
   ),
 ];
 
-// final testTvShowTable = TvShowTable.fromEntity(testTvShowDetail);
-
 final testTvShowTable = TvShowTable(
   id: 1,
   name: 'name',
-  backdropPath: 'backdropPath',
+  posterPath: 'posterPath',
   overview: 'overview',
 );
 
 final testTvShowMap = {
   'id': 1,
   'overview': 'overview',
-  'backdropPath': 'backdrop_path',
+  'posterPath': 'posterPath',
   'name': 'name',
   'voteAverage': 3.0
 };
@@ -54,6 +61,6 @@ final testTvShowMap = {
 final testWatchlistTvShow = TvShow.watchlist(
   id: 1,
   name: 'name',
-  backdropPath: 'backdropPath',
+  posterPath: 'posterPath',
   overview: 'overview',
 );

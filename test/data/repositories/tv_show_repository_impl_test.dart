@@ -29,14 +29,14 @@ void main() {
   });
 
   final tTvShowModel = TvShowModel(
-      backdropPath: 'backdropPath',
+      posterPath: 'posterPath',
       id: 1,
       overview: 'overview',
       voteAverage: 7.2,
       name: 'name');
 
   final tTvShow = TvShow(
-    backdropPath: 'backdropPath',
+    posterPath: 'posterPath',
     id: 1,
     overview: 'overview',
     voteAverage: 7.2,

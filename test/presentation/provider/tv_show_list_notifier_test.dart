@@ -39,7 +39,7 @@ void main() {
   });
 
   final tTvShow = TvShow(
-    backdropPath: 'backdropPath',
+    posterPath: 'backdropPath',
     id: 1,
     name: 'name',
     overview: 'overview',

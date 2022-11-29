@@ -21,9 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _selectedMenu = 'movie';
-
- 
+  String _selectedMenu = 'Movies';
 
   @override
   Widget build(BuildContext context) {
@@ -43,23 +41,19 @@ class _HomePageState extends State<HomePage> {
               title: Text('Tv Shows'),
               onTap: () {
                 setState(() {
-                  _selectedMenu = 'tv';
+                  _selectedMenu = 'Tv Shows';
                 });
-                // Navigator.pushNamed(
-                //   context,
-                //   TvShowDetailPage.ROUTE_NAME,
-                //   arguments: 94997,
-                // );
+                Navigator.pop(context);
               },
             ),
             ListTile(
               leading: Icon(Icons.movie),
               title: Text('Movies'),
               onTap: () {
-                // Navigator.pop(context);
                 setState(() {
-                  _selectedMenu = 'movie';
+                  _selectedMenu = 'Movies';
                 });
+                Navigator.pop(context);
               },
             ),
             ListTile(
@@ -80,7 +74,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       appBar: AppBar(
-        title: Text('Ditonton'),
+        title: Text('Ditonton $_selectedMenu'),
         actions: [
           IconButton(
             onPressed: () {
@@ -93,7 +87,7 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-            child: _selectedMenu == 'movie' ? MovieHome() : TvShowHome()),
+            child: _selectedMenu == 'Movies' ? MovieHome() : TvShowHome()),
       ),
     );
   }

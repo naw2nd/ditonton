@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final tTvShowModel = TvShowModel(
-    backdropPath: 'backdropPath',
+    posterPath: 'posterPath',
     id: 1,
     name: 'name',
     overview: 'overview',
@@ -12,7 +12,7 @@ void main() {
   );
 
   final tTvShow = TvShow(
-      backdropPath: 'backdropPath',
+      posterPath: 'posterPath',
       id: 1,
       name: 'name',
       overview: 'overview',

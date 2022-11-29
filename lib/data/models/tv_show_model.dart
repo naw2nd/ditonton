@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 
 class TvShowModel extends Equatable {
   TvShowModel({
-    required this.backdropPath,
+    required this.posterPath,
     required this.id,
     required this.name,
     required this.overview,
     required this.voteAverage,
   });
 
-  final String? backdropPath;
+  final String? posterPath;
   final int id;
   final String name;
   final String overview;
@@ -18,7 +18,7 @@ class TvShowModel extends Equatable {
 
   factory TvShowModel.fromJson(Map<String, dynamic> json) =>
       TvShowModel(
-        backdropPath: json["backdrop_path"],
+        posterPath: json["poster_path"],
         id: json["id"],
         name: json["name"],
         overview: json["overview"],
@@ -27,7 +27,7 @@ class TvShowModel extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath,
+        "poster_path": posterPath,
         "id": id,
         "name": name,
         "overview": overview,
@@ -36,7 +36,7 @@ class TvShowModel extends Equatable {
       };
 
   TvShow toEntity() => TvShow(
-        backdropPath: backdropPath,
+        posterPath: posterPath,
         id: id,
         name: name,
         overview: overview,
@@ -45,7 +45,7 @@ class TvShowModel extends Equatable {
 
   @override
   List<Object?> get props => [
-        backdropPath,
+        posterPath,
         id,
         name,
         overview,

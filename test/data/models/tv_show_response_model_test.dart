@@ -8,7 +8,7 @@ import '../../json_reader.dart';
 
 void main() {
   final tTvShowModel = TvShowModel(
-    backdropPath: '/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg',
+    posterPath: '/kY0BogCM8SkNJ0MNiHB3VTM86Tz.jpg',
     id: 90462,
     name: 'Chucky',
     overview: 'overview',
@@ -39,7 +39,7 @@ void main() {
       final expectedJsonMap = {
         "results": [
           {
-            "backdrop_path": "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
+            "poster_path": "/kY0BogCM8SkNJ0MNiHB3VTM86Tz.jpg",
             "id": 90462,
             "name": "Chucky",
             "overview": "overview",
