@@ -3,6 +3,7 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv_show.dart';
 import 'package:ditonton/domain/entities/tv_show_detail.dart';
+import 'package:ditonton/presentation/pages/tv_show_season_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv_show_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -151,12 +152,6 @@ class DetailContent extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            // Text(
-                            //   _showGenres(tvShow.genres),
-                            // ),
-                            // Text(
-                            //   _showDuration(tvShow.runtime),
-                            // ),
                             Row(
                               children: [
                                 RatingBarIndicator(
@@ -180,6 +175,54 @@ class DetailContent extends StatelessWidget {
                               tvShow.overview,
                             ),
                             SizedBox(height: 16),
+                            Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            Container(
+                              height: 150,
+                              child: tvShow.seasons == null
+                                  ? Center(child: Text('No Season Available'))
+                                  : ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        final season = tvShow.seasons![index];
+                                        return Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                TvShowSeasonDetailPage
+                                                    .ROUTE_NAME,
+                                                arguments: SeasonArgument(
+                                                    tvShow.id,
+                                                    season.seasonNumber!),
+                                              );
+                                            },
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(8),
+                                              ),
+                                              child: CachedNetworkImage(
+                                                imageUrl:
+                                                    'https://image.tmdb.org/t/p/w500${season.posterPath}',
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      itemCount: tvShow.seasons!.length,
+                                    ),
+                            ),
                             Text(
                               'Recommendations',
                               style: kHeading6,
@@ -277,28 +320,4 @@ class DetailContent extends StatelessWidget {
       ],
     );
   }
-
-  // String _showGenres(List<Genre> genres) {
-  //   String result = '';
-  //   for (var genre in genres) {
-  //     result += genre.name + ', ';
-  //   }
-
-  //   if (result.isEmpty) {
-  //     return result;
-  //   }
-
-  //   return result.substring(0, result.length - 2);
-  // }
-
-  // String _showDuration(int runtime) {
-  //   final int hours = runtime ~/ 60;
-  //   final int minutes = runtime % 60;
-
-  //   if (hours > 0) {
-  //     return '${hours}h ${minutes}m';
-  //   } else {
-  //     return '${minutes}m';
-  //   }
-  // }
 }

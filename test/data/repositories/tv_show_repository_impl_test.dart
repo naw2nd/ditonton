@@ -5,7 +5,9 @@ import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/models/tv_season_model.dart';
 import 'package:ditonton/data/models/tv_show_detail_model.dart';
+import 'package:ditonton/data/models/tv_show_episode_model.dart';
 import 'package:ditonton/data/models/tv_show_model.dart';
+import 'package:ditonton/data/models/tv_show_season_detail_response.dart';
 import 'package:ditonton/data/repositories/tv_show_repository_impl.dart';
 import 'package:ditonton/domain/entities/tv_show.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -396,6 +398,78 @@ void main() {
       // assert
       final resultList = result.getOrElse(() => []);
       expect(resultList, [testWatchlistTvShow]);
+    });
+  });
+
+  group('Get TvShow Season Detail', () {
+    final tId = 1;
+    final tSeasonNumber = 1;
+
+    final tTvShowEpisodeList = [
+      TvShowEpisodeModel(
+        episodeNumber: 1,
+        id: 1971015,
+        name: "The Heirs of the Dragon",
+        overview:
+            "Viserys hosts a tournament to celebrate the birth of his second child. Rhaenyra welcomes her uncle Daemon back to the Red Keep.",
+        stillPath: "/3V447myclihccqnSiVFVdlnNjZs.jpg",
+      ),
+      TvShowEpisodeModel(
+          episodeNumber: 2,
+          id: 3846963,
+          name: "The Rogue Prince",
+          overview:
+              "Princess Rhaenyra dives deep into the prophecies about House Targaryen while confronting a realm that resists the idea of a woman on the Iron Throne, and Prince Daemon, embittered over being passed over as the heir to Westeros, prepares to go to war.",
+          stillPath: "/uyWlPCKMPcjxjiKY6xFKtdbkFSR.jpg")
+    ];
+
+    final tTvShowSeasonDetail = TvShowSeasonDetailResponse(
+      name: "Season 1",
+      overview: "",
+      id: 134965,
+      posterPath: "/z2yahl2uefxDCl0nogcRBstwruJ.jpg",
+      seasonNumber: 1,
+      episodes: tTvShowEpisodeList,
+    );
+
+    test(
+        'should return TvShow Season data when the call to remote data source is successful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvShowSeasonDetail(tId, tSeasonNumber))
+          .thenAnswer((_) async => tTvShowSeasonDetail);
+      // act
+      final result = await repository.getTvShowSeasonDetail(tId, tSeasonNumber);
+      // assert
+      verify(mockRemoteDataSource.getTvShowSeasonDetail(tId, tSeasonNumber));
+      expect(result, equals(Right(testTvShowSeasonDetail)));
+    });
+
+    test(
+        'should return Server Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvShowSeasonDetail(tId, tSeasonNumber))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.getTvShowSeasonDetail(tId, tSeasonNumber);
+      // assert
+      verify(mockRemoteDataSource.getTvShowSeasonDetail(tId, tSeasonNumber));
+      expect(result, equals(Left(ServerFailure(''))));
+    });
+
+    test(
+        'should return connection failure when the device is not connected to internet',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvShowDetail(tId))
+          .thenThrow(SocketException('Failed to connect to the network'));
+      // act
+      final result = await repository.getTvShowDetail(tId);
+      // assert
+      verify(mockRemoteDataSource.getTvShowDetail(tId));
+      expect(result,
+          equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
   });
 }

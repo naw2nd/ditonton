@@ -47,7 +47,7 @@ class DatabaseHelper {
         id INTEGER PRIMARY KEY,
         name TEXT,
         overview TEXT,
-        backdropPath TEXT
+        posterPath TEXT
       );
     ''');
   }

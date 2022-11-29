@@ -1,0 +1,23 @@
+{
+    "episodes": [
+        {
+            "episode_number": 1,
+            "id": 1971015,
+            "name": "The Heirs of the Dragon",
+            "overview": "Viserys hosts a tournament to celebrate the birth of his second child. Rhaenyra welcomes her uncle Daemon back to the Red Keep.",
+            "still_path": "/3V447myclihccqnSiVFVdlnNjZs.jpg"
+        },
+        {
+            "episode_number": 2,
+            "id": 3846963,
+            "name": "The Rogue Prince",
+            "overview": "Princess Rhaenyra dives deep into the prophecies about House Targaryen while confronting a realm that resists the idea of a woman on the Iron Throne, and Prince Daemon, embittered over being passed over as the heir to Westeros, prepares to go to war.",
+            "still_path": "/uyWlPCKMPcjxjiKY6xFKtdbkFSR.jpg"
+        }
+    ],
+    "name": "Season 1",
+    "overview": "",
+    "id": 134965,
+    "poster_path": "/z2yahl2uefxDCl0nogcRBstwruJ.jpg",
+    "season_number": 1
+}

@@ -9,6 +9,7 @@ import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_show_page.dart';
 import 'package:ditonton/presentation/pages/tv_show_detail_page.dart';
+import 'package:ditonton/presentation/pages/tv_show_season_detail_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
@@ -20,6 +21,7 @@ import 'package:ditonton/presentation/provider/top_rated_tv_shows_notifier.dart'
 import 'package:ditonton/presentation/provider/tv_show_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_show_list_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_show_search_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_show_season_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_tv_show_notifier.dart';
 import 'package:flutter/cupertino.dart';
@@ -73,6 +75,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvShowNotifier>(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowSeasonDetailNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -106,6 +111,14 @@ class MyApp extends StatelessWidget {
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => TvShowDetailPage(id: id),
+                settings: settings,
+              );
+            case TvShowSeasonDetailPage.ROUTE_NAME:
+              final seasonArg = settings.arguments as SeasonArgument;
+              return MaterialPageRoute(
+                builder: (_) => TvShowSeasonDetailPage(
+                  seasonArgs: seasonArg,
+                ),
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:

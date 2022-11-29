@@ -5,6 +5,7 @@ import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/datasources/tv_show_remote_data_source.dart';
 import 'package:ditonton/data/models/tv_show_detail_model.dart';
 import 'package:ditonton/data/models/tv_show_response.dart';
+import 'package:ditonton/data/models/tv_show_season_detail_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
@@ -18,6 +19,9 @@ void main() {
 
   late TvShowRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
+
+  final tTvId = 1;
+  final tTvSeasonNumber = 1;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
@@ -219,6 +223,41 @@ void main() {
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
       final call = dataSource.searchTvShows(tQuery);
+      // assert
+      expect(() => call, throwsA(isA<ServerException>()));
+    });
+  });
+
+  group('get Tv Show Season Detail', () {
+    final tTvShowList = TvShowSeasonDetailResponse.fromJson(
+        json.decode(readJson('dummy_data/tv_show_season_detail.json')));
+
+    test('should return tv shows deatil when response is success (200)',
+        () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse(
+              '$BASE_URL/tv/$tTvId/season/$tTvSeasonNumber?$API_KEY')))
+          .thenAnswer((_) async => http.Response(
+                  readJson('dummy_data/tv_show_season_detail.json'), 200,
+                  headers: {
+                    HttpHeaders.contentTypeHeader:
+                        'application/json; charset=utf-8',
+                  }));
+      // act
+      final result = await dataSource.getTvShowSeasonDetail(1, 1);
+      // assert
+      expect(result, tTvShowList);
+    });
+
+    test(
+        'should throw a ServerException when the response code is 404 or other',
+        () async {
+      // arrange
+      when(mockHttpClient.get(Uri.parse(
+              '$BASE_URL/tv/$tTvId/season/$tTvSeasonNumber?$API_KEY')))
+          .thenAnswer((_) async => http.Response('Not Found', 404));
+      // act
+      final call = dataSource.getTvShowSeasonDetail(1, 1);
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });
