@@ -34,16 +34,6 @@ class TvShowDetailResponse extends Equatable {
             .where((element) => element.airDate != null)),
       );
 
-  Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "poster_path": posterPath,
-        "vote_average": voteAverage,
-        "seasons": List<dynamic>.from(seasons.map((x) => x.toJson())),
-      };
-
   TvShowDetail toEntity() => TvShowDetail(
         backdropPath: backdropPath,
         id: id,

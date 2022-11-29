@@ -2,7 +2,7 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/provider/tv_show_season_detail_notifier.dart';
-import 'package:ditonton/presentation/widgets/episode_card_list.dart';
+import 'package:ditonton/presentation/widgets/episode_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

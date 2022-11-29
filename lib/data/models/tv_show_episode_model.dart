@@ -25,13 +25,6 @@ class TvShowEpisodeModel extends Equatable {
         stillPath: json["still_path"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "episode_number": episodeNumber,
-        "id": id,
-        "name": name,
-        "overview": overview,
-        "still_path": stillPath,
-      };
 
   TvShowEpisode toEntity() => TvShowEpisode(
         episodeNumber: episodeNumber,

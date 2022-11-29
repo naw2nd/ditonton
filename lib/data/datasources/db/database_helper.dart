@@ -1,9 +1,9 @@
+// coverage:ignore-file
 import 'dart:async';
 
 import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/data/models/tv_show_table.dart';
 import 'package:sqflite/sqflite.dart';
-
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
   DatabaseHelper._instance() {
@@ -13,6 +13,7 @@ class DatabaseHelper {
   factory DatabaseHelper() => _databaseHelper ?? DatabaseHelper._instance();
 
   static Database? _database;
+  
 
   Future<Database?> get database async {
     if (_database == null) {

@@ -143,22 +143,22 @@ class MockMovieRepository extends _i1.Mock implements _i7.MovieRepository {
   @override
   _i8.Future<_i2.Either<_i9.Failure, String>> saveMovieWatchlist(
           _i11.MovieDetail? movie) =>
-      (super.noSuchMethod(Invocation.method(#saveWatchlist, [movie]),
+      (super.noSuchMethod(Invocation.method(#saveMovieWatchlist, [movie]),
               returnValue: _i8.Future<_i2.Either<_i9.Failure, String>>.value(
                   _FakeEither_0<_i9.Failure, String>(
-                      this, Invocation.method(#saveWatchlist, [movie]))))
+                      this, Invocation.method(#saveMovieWatchlist, [movie]))))
           as _i8.Future<_i2.Either<_i9.Failure, String>>);
   @override
   _i8.Future<_i2.Either<_i9.Failure, String>> removeMovieWatchlist(
           _i11.MovieDetail? movie) =>
-      (super.noSuchMethod(Invocation.method(#removeWatchlist, [movie]),
+      (super.noSuchMethod(Invocation.method(#removeMovieWatchlist, [movie]),
               returnValue: _i8.Future<_i2.Either<_i9.Failure, String>>.value(
                   _FakeEither_0<_i9.Failure, String>(
-                      this, Invocation.method(#removeWatchlist, [movie]))))
+                      this, Invocation.method(#removeMovieWatchlist, [movie]))))
           as _i8.Future<_i2.Either<_i9.Failure, String>>);
   @override
   _i8.Future<bool> isAddedToMovieWatchlist(int? id) =>
-      (super.noSuchMethod(Invocation.method(#isAddedToWatchlist, [id]),
+      (super.noSuchMethod(Invocation.method(#isAddedToMovieWatchlist, [id]),
           returnValue: _i8.Future<bool>.value(false)) as _i8.Future<bool>);
   @override
   _i8.Future<_i2.Either<_i9.Failure, List<_i10.Movie>>> getWatchlistMovies() =>
@@ -384,11 +384,11 @@ class MockMovieLocalDataSource extends _i1.Mock
 
   @override
   _i8.Future<String> insertMovieWatchlist(_i21.MovieTable? movie) =>
-      (super.noSuchMethod(Invocation.method(#insertWatchlist, [movie]),
+      (super.noSuchMethod(Invocation.method(#insertMovieWatchlist, [movie]),
           returnValue: _i8.Future<String>.value('')) as _i8.Future<String>);
   @override
   _i8.Future<String> removeMovieWatchlist(_i21.MovieTable? movie) =>
-      (super.noSuchMethod(Invocation.method(#removeWatchlist, [movie]),
+      (super.noSuchMethod(Invocation.method(#removeMovieWatchlist, [movie]),
           returnValue: _i8.Future<String>.value('')) as _i8.Future<String>);
   @override
   _i8.Future<_i21.MovieTable?> getMovieById(int? id) =>
