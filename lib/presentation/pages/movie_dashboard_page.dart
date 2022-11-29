@@ -9,12 +9,12 @@ import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MovieHome extends StatefulWidget {
+class MovieDashboardPage extends StatefulWidget {
   @override
-  State<MovieHome> createState() => _MovieHomeState();
+  State<MovieDashboardPage> createState() => _MovieDashboardPageState();
 }
 
-class _MovieHomeState extends State<MovieHome> {
+class _MovieDashboardPageState extends State<MovieDashboardPage> {
   @override
   void initState() {
     super.initState();

@@ -9,12 +9,12 @@ import 'package:ditonton/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class TvShowHome extends StatefulWidget {
+class TvShowDashboardPage extends StatefulWidget {
   @override
-  State<TvShowHome> createState() => _TvShowHomeState();
+  State<TvShowDashboardPage> createState() => _TvShowDashboardPageState();
 }
 
-class _TvShowHomeState extends State<TvShowHome> {
+class _TvShowDashboardPageState extends State<TvShowDashboardPage> {
   @override
   void initState() {
     super.initState();

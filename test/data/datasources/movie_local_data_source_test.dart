@@ -3,7 +3,7 @@ import 'package:ditonton/data/datasources/movie_local_data_source.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../dummy_data/dummy_objects.dart';
+import '../../dummy_data/movie_dummy_objects.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
@@ -22,7 +22,7 @@ void main() {
       when(mockDatabaseHelper.insertWatchlist(testMovieTable))
           .thenAnswer((_) async => 1);
       // act
-      final result = await dataSource.insertWatchlist(testMovieTable);
+      final result = await dataSource.insertMovieWatchlist(testMovieTable);
       // assert
       expect(result, 'Added to Watchlist');
     });
@@ -33,7 +33,7 @@ void main() {
       when(mockDatabaseHelper.insertWatchlist(testMovieTable))
           .thenThrow(Exception());
       // act
-      final call = dataSource.insertWatchlist(testMovieTable);
+      final call = dataSource.insertMovieWatchlist(testMovieTable);
       // assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });
@@ -46,7 +46,7 @@ void main() {
       when(mockDatabaseHelper.removeWatchlist(testMovieTable))
           .thenAnswer((_) async => 1);
       // act
-      final result = await dataSource.removeWatchlist(testMovieTable);
+      final result = await dataSource.removeMovieWatchlist(testMovieTable);
       // assert
       expect(result, 'Removed from Watchlist');
     });
@@ -57,7 +57,7 @@ void main() {
       when(mockDatabaseHelper.removeWatchlist(testMovieTable))
           .thenThrow(Exception());
       // act
-      final call = dataSource.removeWatchlist(testMovieTable);
+      final call = dataSource.removeMovieWatchlist(testMovieTable);
       // assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });

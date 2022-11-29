@@ -32,7 +32,6 @@ class TvShowModel extends Equatable {
         "name": name,
         "overview": overview,
         "vote_average": voteAverage,
-       
       };
 
   TvShow toEntity() => TvShow(

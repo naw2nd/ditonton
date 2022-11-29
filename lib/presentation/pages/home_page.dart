@@ -1,7 +1,7 @@
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie_home.dart';
+import 'package:ditonton/presentation/pages/movie_dashboard_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/tv_show_home.dart';
+import 'package:ditonton/presentation/pages/tv_show_dashboard_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:flutter/material.dart';
 
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
-            child: _selectedMenu == 'Movies' ? MovieHome() : TvShowHome()),
+            child: _selectedMenu == 'Movies' ? MovieDashboardPage() : TvShowDashboardPage()),
       ),
     );
   }
