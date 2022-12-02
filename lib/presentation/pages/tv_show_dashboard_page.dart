@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv_show.dart';
+import 'package:ditonton/presentation/pages/now_playing_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_show_page.dart';
 import 'package:ditonton/presentation/pages/tv_show_detail_page.dart';
@@ -30,9 +31,10 @@ class _TvShowDashboardPageState extends State<TvShowDashboardPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Now Playing',
-          style: kHeading6,
+        _buildSubHeading(
+          title: 'Now Playing',
+          onTap: () =>
+              Navigator.pushNamed(context, NowPlayingTvShowsPage.ROUTE_NAME),
         ),
         Consumer<TvShowListNotifier>(builder: (context, data, child) {
           final state = data.nowPlayingState;

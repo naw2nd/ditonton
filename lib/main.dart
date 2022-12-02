@@ -3,6 +3,7 @@ import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_page.dart';
+import 'package:ditonton/presentation/pages/now_playing_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
@@ -14,6 +15,7 @@ import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_search_notifier.dart';
+import 'package:ditonton/presentation/provider/now_playing_tv_shows_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/presentation/provider/popular_tv_shows_notifier.dart';
 import 'package:ditonton/presentation/provider/top_rated_movies_notifier.dart';
@@ -73,6 +75,9 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<PopularTvShowsNotifier>(),
         ),
         ChangeNotifierProvider(
+          create: (_) => di.locator<NowPlayingTvShowsNotifier>(),
+        ),
+        ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistTvShowNotifier>(),
         ),
         ChangeNotifierProvider(
@@ -97,6 +102,8 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case PopularTvShowsPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularTvShowsPage());
+            case NowPlayingTvShowsPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => NowPlayingTvShowsPage());
             case TopRatedMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case TopRatedTvShowsPage.ROUTE_NAME:

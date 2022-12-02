@@ -13,11 +13,11 @@ class TvShowDetailResponse extends Equatable {
     required this.seasons,
   });
 
-  final String backdropPath;
+  final String? backdropPath;
   final int id;
   final String name;
   final String overview;
-  final String posterPath;
+  final String? posterPath;
   final double voteAverage;
   final List<TvSeasonModel> seasons;
 
