@@ -100,11 +100,20 @@ class MovieSearchResult extends StatelessWidget {
     return Consumer<MovieSearchNotifier>(
       builder: (context, data, child) {
         if (data.state == RequestState.Loading) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Expanded(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else if (data.state == RequestState.Loaded) {
           final result = data.searchResult;
+          if (result.isEmpty) {
+            return Expanded(
+              child: Center(
+                child: Text('Movies Not Found'),
+              ),
+            );
+          }
           return Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(8),
@@ -135,11 +144,20 @@ class TvShowSearchResult extends StatelessWidget {
     return Consumer<TvShowSearchNotifier>(
       builder: (context, data, child) {
         if (data.state == RequestState.Loading) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return Expanded(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else if (data.state == RequestState.Loaded) {
           final result = data.searchResult;
+          if (result.isEmpty) {
+            return Expanded(
+              child: Center(
+                child: Text('Tv Shows Not Found'),
+              ),
+            );
+          }
           return Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.all(8),

@@ -106,6 +106,11 @@ class MovieWatchlist extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (data.watchlistState == RequestState.Loaded) {
+          if (data.watchlistMovies.isEmpty) {
+            return Center(
+              child: Text('Movies Watchlist is Empty'),
+            );
+          }
           return ListView.builder(
             itemBuilder: (context, index) {
               final movie = data.watchlistMovies[index];
@@ -138,6 +143,11 @@ class TvShowWatchlist extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (data.watchlistState == RequestState.Loaded) {
+          if (data.watchlistTvShows.isEmpty) {
+            return Center(
+              child: Text('Tv Shows Watchlist is Empty'),
+            );
+          }
           return ListView.builder(
             itemBuilder: (context, index) {
               final tvShow = data.watchlistTvShows[index];
