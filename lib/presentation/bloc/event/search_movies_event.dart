@@ -1,4 +1,4 @@
-part of 'package:ditonton/presentation/bloc/movie_search_bloc.dart';
+part of 'package:ditonton/presentation/bloc/search_movies_bloc.dart';
 
 abstract class SearchMoviesEvent extends Equatable {
   const SearchMoviesEvent();
