@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/tv_show.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_tv_shows.dart';
 import 'package:flutter/material.dart';
 
-class WatchlistTvShowNotifier extends ChangeNotifier {
+class WatchlistTvShowsNotifier extends ChangeNotifier {
   var _watchlistTvShows = <TvShow>[];
   List<TvShow> get watchlistTvShows => _watchlistTvShows;
 
@@ -13,7 +13,7 @@ class WatchlistTvShowNotifier extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
-  WatchlistTvShowNotifier({required this.getWatchlistTvShows});
+  WatchlistTvShowsNotifier({required this.getWatchlistTvShows});
 
   final GetWatchlistTvShows getWatchlistTvShows;
 

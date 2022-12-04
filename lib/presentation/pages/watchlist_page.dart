@@ -1,8 +1,8 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_show_notifier.dart';
+import 'package:ditonton/presentation/provider/watchlist_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/watchlist_tv_shows_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card.dart';
 import 'package:ditonton/presentation/widgets/tv_show_card.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +21,10 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
+        Provider.of<WatchlistMoviesNotifier>(context, listen: false)
             .fetchWatchlistMovies());
     Future.microtask(() =>
-        Provider.of<WatchlistTvShowNotifier>(context, listen: false)
+        Provider.of<WatchlistTvShowsNotifier>(context, listen: false)
             .fetchWatchlistTvShows());
   }
 
@@ -35,9 +35,9 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
+    Provider.of<WatchlistMoviesNotifier>(context, listen: false)
         .fetchWatchlistMovies();
-    Provider.of<WatchlistTvShowNotifier>(context, listen: false)
+    Provider.of<WatchlistTvShowsNotifier>(context, listen: false)
         .fetchWatchlistTvShows();
   }
 
@@ -99,7 +99,7 @@ class MovieWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistMovieNotifier>(
+    return Consumer<WatchlistMoviesNotifier>(
       builder: (context, data, child) {
         if (data.watchlistState == RequestState.Loading) {
           return Center(
@@ -136,7 +136,7 @@ class TvShowWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistTvShowNotifier>(
+    return Consumer<WatchlistTvShowsNotifier>(
       builder: (context, data, child) {
         if (data.watchlistState == RequestState.Loading) {
           return Center(

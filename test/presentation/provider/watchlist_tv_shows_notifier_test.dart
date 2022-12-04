@@ -3,24 +3,24 @@ import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/usecases/get_watchlist_tv_shows.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_show_notifier.dart';
+import 'package:ditonton/presentation/provider/watchlist_tv_shows_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/tv_show_dummy_objects.dart';
-import 'watchlist_tv_show_notifier_test.mocks.dart';
+import 'watchlist_tv_shows_notifier_test.mocks.dart';
 
 @GenerateMocks([GetWatchlistTvShows])
 void main() {
-  late WatchlistTvShowNotifier provider;
+  late WatchlistTvShowsNotifier provider;
   late MockGetWatchlistTvShows mockGetWatchlistTvShows;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
     mockGetWatchlistTvShows = MockGetWatchlistTvShows();
-    provider = WatchlistTvShowNotifier(
+    provider = WatchlistTvShowsNotifier(
       getWatchlistTvShows: mockGetWatchlistTvShows,
     )..addListener(() {
         listenerCallCount += 1;

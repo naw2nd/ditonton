@@ -26,8 +26,8 @@ import 'package:ditonton/presentation/provider/tv_show_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_show_list_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_show_search_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_show_season_detail_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_show_notifier.dart';
+import 'package:ditonton/presentation/provider/watchlist_movies_notifier.dart';
+import 'package:ditonton/presentation/provider/watchlist_tv_shows_notifier.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<PopularMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+          create: (_) => di.locator<WatchlistMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowListNotifier>(),
@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
           create: (_) => di.locator<NowPlayingTvShowsNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistTvShowNotifier>(),
+          create: (_) => di.locator<WatchlistTvShowsNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowSeasonDetailNotifier>(),
