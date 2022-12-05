@@ -4,7 +4,7 @@ import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/usecases/get_tv_show_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/remove_tv_show_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_tv_show_watchlist.dart';
-import 'package:ditonton/presentation/bloc/tv_show_watchlist_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_show_watchlist/tv_show_watchlist_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

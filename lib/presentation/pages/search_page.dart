@@ -1,6 +1,6 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/presentation/bloc/search_movies_bloc.dart';
-import 'package:ditonton/presentation/bloc/search_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/search_movies/search_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/search_tv_shows/search_tv_shows_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card.dart';
 import 'package:ditonton/presentation/widgets/tv_show_card.dart';
 import 'package:flutter/material.dart';

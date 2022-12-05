@@ -2,7 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/usecases/get_now_playing_tv_shows.dart';
-import 'package:ditonton/presentation/bloc/now_playing_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/now_playing_tv_shows/now_playing_tv_shows_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

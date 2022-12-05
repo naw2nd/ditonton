@@ -1,5 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/presentation/bloc/tv_show_season_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_show_season_detail/tv_show_season_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/tv_show_season_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/tv_show.dart';
-import 'package:ditonton/presentation/bloc/now_playing_tv_shows_bloc.dart';
-import 'package:ditonton/presentation/bloc/popular_tv_shows_bloc.dart';
-import 'package:ditonton/presentation/bloc/top_rated_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/now_playing_tv_shows/now_playing_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular_tv_shows/popular_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/top_rated_tv_shows/top_rated_tv_shows_bloc.dart';
 import 'package:ditonton/presentation/pages/now_playing_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_shows_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_shows_page.dart';

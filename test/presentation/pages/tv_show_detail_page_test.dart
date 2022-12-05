@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:ditonton/presentation/bloc/tv_show_detail_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_show_recommendations_bloc.dart';
-import 'package:ditonton/presentation/bloc/tv_show_watchlist_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_show_detail/tv_show_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_show_recommendations/tv_show_recommendations_bloc.dart';
+import 'package:ditonton/presentation/bloc/tv_show_watchlist/tv_show_watchlist_bloc.dart';
 import 'package:ditonton/presentation/pages/tv_show_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

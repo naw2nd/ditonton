@@ -1,7 +1,7 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/bloc/watchlist_movies_bloc.dart';
-import 'package:ditonton/presentation/bloc/watchlist_tv_shows_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist_movies/watchlist_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist_tv_shows/watchlist_tv_shows_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card.dart';
 import 'package:ditonton/presentation/widgets/tv_show_card.dart';
 import 'package:flutter/material.dart';
