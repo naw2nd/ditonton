@@ -1,17 +1,11 @@
 part of 'package:ditonton/presentation/bloc/movie_detail_bloc.dart';
 
-abstract class MovieDetailEvent extends Equatable {
+abstract class MovieDetailEvent {
   const MovieDetailEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class OnFetchMovieDetail extends MovieDetailEvent {
   final int id;
 
   OnFetchMovieDetail(this.id);
-
-  @override
-  List<Object> get props => [id];
 }

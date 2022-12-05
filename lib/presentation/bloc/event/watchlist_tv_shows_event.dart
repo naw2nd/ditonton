@@ -1,10 +1,7 @@
 part of 'package:ditonton/presentation/bloc/watchlist_tv_shows_bloc.dart';
 
-abstract class WatchlistTvShowsEvent extends Equatable {
+abstract class WatchlistTvShowsEvent {
   const WatchlistTvShowsEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class OnFetchWatchlistTvShows extends WatchlistTvShowsEvent {}

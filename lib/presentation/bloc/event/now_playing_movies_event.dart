@@ -1,10 +1,7 @@
 part of 'package:ditonton/presentation/bloc/now_playing_movies_bloc.dart';
 
-abstract class NowPlayingMoviesEvent extends Equatable {
+abstract class NowPlayingMoviesEvent {
   const NowPlayingMoviesEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class OnFetchNowPlayingMovies extends NowPlayingMoviesEvent {}

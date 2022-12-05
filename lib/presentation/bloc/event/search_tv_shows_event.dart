@@ -1,10 +1,8 @@
 part of 'package:ditonton/presentation/bloc/search_tv_shows_bloc.dart';
 
-abstract class SearchTvShowsEvent extends Equatable {
+abstract class SearchTvShowsEvent{
   const SearchTvShowsEvent();
 
-  @override
-  List<Object> get props => [];
 }
 
 class OnQuerySearchTvShows extends SearchTvShowsEvent {
@@ -12,6 +10,4 @@ class OnQuerySearchTvShows extends SearchTvShowsEvent {
 
   OnQuerySearchTvShows(this.query);
 
-  @override
-  List<Object> get props => [query];
 }

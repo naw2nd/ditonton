@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
+        key: Key('home_page_drawer'),
         child: Column(
           children: [
             UserAccountsDrawerHeader(
@@ -28,6 +29,7 @@ class _HomePageState extends State<HomePage> {
               accountEmail: Text('ditonton@dicoding.com'),
             ),
             ListTile(
+              key: Key('tv_shows_list_tile_drawer'),
               leading: Icon(Icons.tv),
               title: Text('Tv Shows'),
               onTap: () {
@@ -38,6 +40,7 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
+              key: Key('movies_list_tile_drawer'),
               leading: Icon(Icons.movie),
               title: Text('Movies'),
               onTap: () {
@@ -48,13 +51,15 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             ListTile(
+              key: Key('watchlists_list_tile_drawer'),
               leading: Icon(Icons.save_alt),
-              title: Text('Watchlist'),
+              title: Text('Watchlists'),
               onTap: () {
                 Navigator.pushNamed(context, WatchlistPage.ROUTE_NAME);
               },
             ),
             ListTile(
+              key: Key('about_list_tile_drawer'),
               onTap: () {
                 Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
               },
@@ -100,9 +105,15 @@ class _HomePageState extends State<HomePage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('This is a button to test crash analytics and reported to firebase.'),
-                SizedBox(height: 5,),
-                Text('If you click the button below, the app will crash immediately', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(
+                    'This is a button to test crash analytics and reported to firebase.'),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'If you click the button below, the app will crash immediately',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ),

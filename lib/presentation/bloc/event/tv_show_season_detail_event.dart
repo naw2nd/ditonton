@@ -1,10 +1,7 @@
 part of 'package:ditonton/presentation/bloc/tv_show_season_detail_bloc.dart';
 
-abstract class TvShowSeasonDetailEvent extends Equatable {
+abstract class TvShowSeasonDetailEvent {
   const TvShowSeasonDetailEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class OnFetchTvShowSeasonDetail extends TvShowSeasonDetailEvent {
@@ -13,6 +10,4 @@ class OnFetchTvShowSeasonDetail extends TvShowSeasonDetailEvent {
 
   OnFetchTvShowSeasonDetail(this.id, this.seasonNumber);
 
-  @override
-  List<Object> get props => [id];
 }

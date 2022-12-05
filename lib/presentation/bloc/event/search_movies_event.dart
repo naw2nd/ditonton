@@ -1,17 +1,11 @@
 part of 'package:ditonton/presentation/bloc/search_movies_bloc.dart';
 
-abstract class SearchMoviesEvent extends Equatable {
+abstract class SearchMoviesEvent {
   const SearchMoviesEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class OnQuerySearchMovies extends SearchMoviesEvent {
   final String query;
 
   OnQuerySearchMovies(this.query);
-
-  @override
-  List<Object> get props => [query];
 }
