@@ -1,12 +1,11 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/watchlist_movies_notifier.dart';
-import 'package:ditonton/presentation/provider/watchlist_tv_shows_notifier.dart';
+import 'package:ditonton/presentation/bloc/watchlist_movies_bloc.dart';
+import 'package:ditonton/presentation/bloc/watchlist_tv_shows_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card.dart';
 import 'package:ditonton/presentation/widgets/tv_show_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WatchlistPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist';
@@ -20,12 +19,10 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMoviesNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
-    Future.microtask(() =>
-        Provider.of<WatchlistTvShowsNotifier>(context, listen: false)
-            .fetchWatchlistTvShows());
+    Future.microtask(() {
+      context.read<WatchlistMoviesBloc>().add(OnFetchWatchlistMovies());
+      context.read<WatchlistTvShowsBloc>().add(OnFetchWatchlistTvShows());
+    });
   }
 
   @override
@@ -35,10 +32,8 @@ class _WatchlistPageState extends State<WatchlistPage> with RouteAware {
   }
 
   void didPopNext() {
-    Provider.of<WatchlistMoviesNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-    Provider.of<WatchlistTvShowsNotifier>(context, listen: false)
-        .fetchWatchlistTvShows();
+    context.read<WatchlistMoviesBloc>().add(OnFetchWatchlistMovies());
+    context.read<WatchlistTvShowsBloc>().add(OnFetchWatchlistTvShows());
   }
 
   @override
@@ -99,29 +94,29 @@ class MovieWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistMoviesNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
+    return BlocBuilder<WatchlistMoviesBloc, WatchlistMoviesState>(
+      builder: (context, state) {
+        if (state is WatchlistMoviesLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistMovies.isEmpty) {
+        } else if (state is WatchlistMoviesHasData) {
+          if (state.result.isEmpty) {
             return Center(
               child: Text('Movies Watchlist is Empty'),
             );
           }
           return ListView.builder(
             itemBuilder: (context, index) {
-              final movie = data.watchlistMovies[index];
+              final movie = state.result[index];
               return MovieCard(movie);
             },
-            itemCount: data.watchlistMovies.length,
+            itemCount: state.result.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text('Failed'),
           );
         }
       },
@@ -136,29 +131,29 @@ class TvShowWatchlist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<WatchlistTvShowsNotifier>(
-      builder: (context, data, child) {
-        if (data.watchlistState == RequestState.Loading) {
+    return BlocBuilder<WatchlistTvShowsBloc, WatchlistTvShowsState>(
+      builder: (context, state) {
+        if (state is WatchlistTvShowsLoading) {
           return Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.watchlistState == RequestState.Loaded) {
-          if (data.watchlistTvShows.isEmpty) {
+        } else if (state is WatchlistTvShowsHasData) {
+          if (state.result.isEmpty) {
             return Center(
               child: Text('Tv Shows Watchlist is Empty'),
             );
           }
           return ListView.builder(
             itemBuilder: (context, index) {
-              final tvShow = data.watchlistTvShows[index];
+              final tvShow = state.result[index];
               return TvShowCard(tvShow);
             },
-            itemCount: data.watchlistTvShows.length,
+            itemCount: state.result.length,
           );
         } else {
           return Center(
             key: Key('error_message'),
-            child: Text(data.message),
+            child: Text('Failed'),
           );
         }
       },

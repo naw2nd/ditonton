@@ -10,8 +10,8 @@ part 'package:ditonton/presentation/bloc/event/search_movies_event.dart';
 class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
   final SearchMovies searchMovies;
 
-  SearchMoviesBloc(this.searchMovies) : super(SearchMoviesEmpty()) {
-    on<OnQuerySearch>((event, emit) async {
+  SearchMoviesBloc({required this.searchMovies}) : super(SearchMoviesEmpty()) {
+    on<OnQuerySearchMovies>((event, emit) async {
       emit(SearchMoviesLoading());
 
       final result = await searchMovies.execute(event.query);

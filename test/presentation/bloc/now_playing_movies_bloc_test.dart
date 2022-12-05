@@ -8,7 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/movie_list_notifier_test.mocks.dart';
+import 'now_playing_movies_bloc_test.mocks.dart';
+
 
 @GenerateMocks([GetNowPlayingMovies])
 void main() {
@@ -18,7 +19,7 @@ void main() {
   setUp(() {
     mockGetNowPlayingMovies = MockGetNowPlayingMovies();
     nowPlayingMoviesBloc = NowPlayingMoviesBloc(
-      mockGetNowPlayingMovies,
+      getNowPlayingMovies: mockGetNowPlayingMovies,
     );
   });
 
@@ -51,7 +52,7 @@ void main() {
           .thenAnswer((_) async => Right(tMovieList));
       return nowPlayingMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchNowPlayingMovies()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingMoviesLoading(),
@@ -69,7 +70,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return nowPlayingMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchNowPlayingMovies()),
     expect: () => [
       NowPlayingMoviesLoading(),
       NowPlayingMoviesError('Server Failure'),

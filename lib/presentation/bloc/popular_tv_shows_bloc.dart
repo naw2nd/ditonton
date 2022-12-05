@@ -9,8 +9,8 @@ part 'package:ditonton/presentation/bloc/event/popular_tv_shows_event.dart';
 class PopularTvShowsBloc extends Bloc<PopularTvShowsEvent, PopularTvShowsState> {
   final GetPopularTvShows getPopularTvShows;
 
-  PopularTvShowsBloc(this.getPopularTvShows) : super(PopularTvShowsEmpty()) {
-    on<OnFetchTvShows>((event, emit) async {
+  PopularTvShowsBloc({required this.getPopularTvShows}) : super(PopularTvShowsEmpty()) {
+    on<OnFetchPopularTvShows>((event, emit) async {
       emit(PopularTvShowsLoading());
 
       final result = await getPopularTvShows.execute();

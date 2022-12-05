@@ -9,8 +9,8 @@ part 'package:ditonton/presentation/bloc/event/popular_movies_event.dart';
 class PopularMoviesBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
   final GetPopularMovies getPopularMovies;
 
-  PopularMoviesBloc(this.getPopularMovies) : super(PopularMoviesEmpty()) {
-    on<OnFetchMovies>((event, emit) async {
+  PopularMoviesBloc({required this.getPopularMovies}) : super(PopularMoviesEmpty()) {
+    on<OnFetchPopularMovies>((event, emit) async {
       emit(PopularMoviesLoading());
 
       final result = await getPopularMovies.execute();

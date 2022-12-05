@@ -10,8 +10,8 @@ part 'package:ditonton/presentation/bloc/event/search_tv_shows_event.dart';
 class SearchTvShowsBloc extends Bloc<SearchTvShowsEvent, SearchTvShowsState> {
   final SearchTvShows searchTvShows;
 
-  SearchTvShowsBloc(this.searchTvShows) : super(SearchTvShowsEmpty()) {
-    on<OnQuerySearch>((event, emit) async {
+  SearchTvShowsBloc({required this.searchTvShows}) : super(SearchTvShowsEmpty()) {
+    on<OnQuerySearchTvShows>((event, emit) async {
       emit(SearchTvShowsLoading());
 
       final result = await searchTvShows.execute(event.query);

@@ -8,7 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/tv_show_dummy_objects.dart';
-import '../provider/tv_show_list_notifier_test.mocks.dart';
+import 'now_playing_tv_shows_bloc_test.mocks.dart';
 
 @GenerateMocks([GetNowPlayingTvShows])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockGetNowPlayingTvShows = MockGetNowPlayingTvShows();
     nowPlayingTvShowsBloc = NowPlayingTvShowsBloc(
-      mockGetNowPlayingTvShows,
+      getNowPlayingTvShows: mockGetNowPlayingTvShows,
     );
   });
 
@@ -34,7 +34,7 @@ void main() {
           .thenAnswer((_) async => Right(testTvShowList));
       return nowPlayingTvShowsBloc;
     },
-    act: (bloc) => bloc.add(OnFetchTvShows()),
+    act: (bloc) => bloc.add(OnFetchNowPlayingTvShows()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       NowPlayingTvShowsLoading(),
@@ -52,7 +52,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return nowPlayingTvShowsBloc;
     },
-    act: (bloc) => bloc.add(OnFetchTvShows()),
+    act: (bloc) => bloc.add(OnFetchNowPlayingTvShows()),
     expect: () => [
       NowPlayingTvShowsLoading(),
       NowPlayingTvShowsError('Server Failure'),

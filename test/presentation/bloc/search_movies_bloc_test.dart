@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/movie_search_notifier_test.mocks.dart';
+import 'search_movies_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchMovies])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockSearchMovies = MockSearchMovies();
     searchMoviesBloc = SearchMoviesBloc(
-      mockSearchMovies,
+      searchMovies: mockSearchMovies,
     );
   });
 
@@ -52,7 +52,7 @@ void main() {
           .thenAnswer((_) async => Right(tMovieList));
       return searchMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnQuerySearch(tQuery)),
+    act: (bloc) => bloc.add(OnQuerySearchMovies(tQuery)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       SearchMoviesLoading(),
@@ -70,7 +70,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return searchMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnQuerySearch(tQuery)),
+    act: (bloc) => bloc.add(OnQuerySearchMovies(tQuery)),
     expect: () => [
       SearchMoviesLoading(),
       SearchMoviesError('Server Failure'),

@@ -7,10 +7,10 @@ abstract class SearchTvShowsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnQuerySearch extends SearchTvShowsEvent {
+class OnQuerySearchTvShows extends SearchTvShowsEvent {
   final String query;
 
-  OnQuerySearch(this.query);
+  OnQuerySearchTvShows(this.query);
 
   @override
   List<Object> get props => [query];

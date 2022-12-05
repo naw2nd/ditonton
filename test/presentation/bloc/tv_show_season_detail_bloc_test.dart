@@ -8,7 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/tv_show_dummy_objects.dart';
-import '../provider/tv_show_season_detail_notifier_test.mocks.dart';
+import 'tv_show_season_detail_bloc_test.mocks.dart';
 
 @GenerateMocks([GetTvShowSeasonDetail])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockGetTvShowSeasonDetail = MockGetTvShowSeasonDetail();
     tvShowDetailBloc = TvShowSeasonDetailBloc(
-      mockGetTvShowSeasonDetail,
+      getTvShowSeasonDetail: mockGetTvShowSeasonDetail,
     );
   });
 

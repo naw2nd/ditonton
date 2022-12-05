@@ -7,4 +7,4 @@ abstract class WatchlistTvShowsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnFetchTvShows extends WatchlistTvShowsEvent {}
+class OnFetchWatchlistTvShows extends WatchlistTvShowsEvent {}

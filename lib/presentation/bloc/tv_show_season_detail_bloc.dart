@@ -10,7 +10,7 @@ class TvShowSeasonDetailBloc
     extends Bloc<TvShowSeasonDetailEvent, TvShowSeasonDetailState> {
   final GetTvShowSeasonDetail getTvShowSeasonDetail;
 
-  TvShowSeasonDetailBloc(this.getTvShowSeasonDetail)
+  TvShowSeasonDetailBloc({required this.getTvShowSeasonDetail})
       : super(TvShowSeasonDetailEmpty()) {
     on<OnFetchTvShowSeasonDetail>((event, emit) async {
       emit(TvShowSeasonDetailLoading());

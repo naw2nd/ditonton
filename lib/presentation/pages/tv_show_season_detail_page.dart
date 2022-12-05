@@ -1,10 +1,9 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/common/utils.dart';
-import 'package:ditonton/presentation/provider/tv_show_season_detail_notifier.dart';
+import 'package:ditonton/presentation/bloc/tv_show_season_detail_bloc.dart';
 import 'package:ditonton/presentation/widgets/episode_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TvShowSeasonDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/tv-show/episodes';
@@ -23,9 +22,10 @@ class _TvShowSeasonDetailPageState extends State<TvShowSeasonDetailPage>
   void initState() {
     super.initState();
     Future.microtask(() =>
-        Provider.of<TvShowSeasonDetailNotifier>(context, listen: false)
-            .fetchTvShowSeasonDetail(
-                widget.seasonArgs.id, widget.seasonArgs.seasonNumber));
+        context.read<TvShowSeasonDetailBloc>().add(OnFetchTvShowSeasonDetail(
+              widget.seasonArgs.id,
+              widget.seasonArgs.seasonNumber,
+            )));
   }
 
   @override
@@ -35,9 +35,10 @@ class _TvShowSeasonDetailPageState extends State<TvShowSeasonDetailPage>
   }
 
   void didPopNext() {
-    Provider.of<TvShowSeasonDetailNotifier>(context, listen: false)
-        .fetchTvShowSeasonDetail(
-            widget.seasonArgs.id, widget.seasonArgs.seasonNumber);
+    context.read<TvShowSeasonDetailBloc>().add(OnFetchTvShowSeasonDetail(
+          widget.seasonArgs.id,
+          widget.seasonArgs.seasonNumber,
+        ));
   }
 
   @override
@@ -51,24 +52,24 @@ class _TvShowSeasonDetailPageState extends State<TvShowSeasonDetailPage>
       ),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Consumer<TvShowSeasonDetailNotifier>(
-            builder: (context, data, child) {
-              if (data.tvShowSeasonState == RequestState.Loading) {
+          child: BlocBuilder<TvShowSeasonDetailBloc, TvShowSeasonDetailState>(
+            builder: (context, state) {
+              if (state is TvShowSeasonDetailLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (data.tvShowSeasonState == RequestState.Loaded) {
+              } else if (state is TvShowSeasonDetailHasData) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
-                    final episode = data.tvShowSeason.episodes[index];
+                    final episode = state.result.episodes[index];
                     return TvShowEpisodeCard(episode);
                   },
-                  itemCount: data.tvShowSeason.episodes.length,
+                  itemCount: state.result.episodes.length,
                 );
               } else {
                 return Center(
                   key: Key('error_message'),
-                  child: Text(data.message),
+                  child: Text('Failed'),
                 );
               }
             },

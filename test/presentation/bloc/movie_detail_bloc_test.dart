@@ -8,7 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/movie_dummy_objects.dart';
-import '../provider/movie_detail_notifier_test.mocks.dart';
+import 'movie_detail_bloc_test.mocks.dart';
 
 @GenerateMocks([GetMovieDetail])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockGetMovieDetail = MockGetMovieDetail();
     movieDetailBloc = MovieDetailBloc(
-      mockGetMovieDetail,
+       getMovieDetail: mockGetMovieDetail,
     );
   });
 

@@ -8,7 +8,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/watchlist_movies_notifier_test.mocks.dart';
+import '../../dummy_data/movie_dummy_objects.dart';
+import 'watchlist_movies_bloc_test.mocks.dart';
 
 @GenerateMocks([GetWatchlistMovies])
 void main() {
@@ -18,27 +19,9 @@ void main() {
   setUp(() {
     mockGetWatchlistMovies = MockGetWatchlistMovies();
     watchlistMoviesBloc = WatchlistMoviesBloc(
-      mockGetWatchlistMovies,
+      getWatchlistMovies: mockGetWatchlistMovies,
     );
   });
-
-  final tMovie = Movie(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    popularity: 1,
-    posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
-    voteAverage: 1,
-    voteCount: 1,
-  );
-
-  final tMovieList = <Movie>[tMovie];
 
   test('initial state should be empty', () {
     expect(watchlistMoviesBloc.state, WatchlistMoviesEmpty());
@@ -48,14 +31,14 @@ void main() {
     'Should emit [Loading, HasData] when data is gotten successfully',
     build: () {
       when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => Right(tMovieList));
+          .thenAnswer((_) async => Right(testMovieList));
       return watchlistMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchWatchlistMovies()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       WatchlistMoviesLoading(),
-      WatchlistMoviesHasData(tMovieList),
+      WatchlistMoviesHasData(testMovieList),
     ],
     verify: (bloc) {
       verify(mockGetWatchlistMovies.execute());
@@ -69,7 +52,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return watchlistMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchWatchlistMovies()),
     expect: () => [
       WatchlistMoviesLoading(),
       WatchlistMoviesError('Server Failure'),

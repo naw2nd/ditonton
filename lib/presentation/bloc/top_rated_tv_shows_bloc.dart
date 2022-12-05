@@ -10,8 +10,8 @@ class TopRatedTvShowsBloc
     extends Bloc<TopRatedTvShowsEvent, TopRatedTvShowsState> {
   final GetTopRatedTvShows getTopRatedTvShows;
 
-  TopRatedTvShowsBloc(this.getTopRatedTvShows) : super(TopRatedTvShowsEmpty()) {
-    on<OnFetchTvShows>((event, emit) async {
+  TopRatedTvShowsBloc({required this.getTopRatedTvShows}) : super(TopRatedTvShowsEmpty()) {
+    on<OnFetchTopRatedTvShows>((event, emit) async {
       emit(TopRatedTvShowsLoading());
 
       final result = await getTopRatedTvShows.execute();

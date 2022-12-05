@@ -9,8 +9,8 @@ part 'package:ditonton/presentation/bloc/event/now_playing_tv_shows_event.dart';
 class NowPlayingTvShowsBloc extends Bloc<NowPlayingTvShowsEvent, NowPlayingTvShowsState> {
   final GetNowPlayingTvShows getNowPlayingTvShows;
 
-  NowPlayingTvShowsBloc(this.getNowPlayingTvShows) : super(NowPlayingTvShowsEmpty()) {
-    on<OnFetchTvShows>((event, emit) async {
+  NowPlayingTvShowsBloc({required this.getNowPlayingTvShows}) : super(NowPlayingTvShowsEmpty()) {
+    on<OnFetchNowPlayingTvShows>((event, emit) async {
       emit(NowPlayingTvShowsLoading());
 
       final result = await getNowPlayingTvShows.execute();

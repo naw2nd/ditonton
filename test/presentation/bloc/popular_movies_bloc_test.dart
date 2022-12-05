@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/movie_list_notifier_test.mocks.dart';
+import 'popular_movies_bloc_test.mocks.dart';
 
 @GenerateMocks([GetPopularMovies])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockGetPopularMovies = MockGetPopularMovies();
     popularMoviesBloc = PopularMoviesBloc(
-      mockGetPopularMovies,
+      getPopularMovies: mockGetPopularMovies,
     );
   });
 
@@ -51,7 +51,7 @@ void main() {
           .thenAnswer((_) async => Right(tMovieList));
       return popularMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchPopularMovies()),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       PopularMoviesLoading(),
@@ -69,7 +69,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return popularMoviesBloc;
     },
-    act: (bloc) => bloc.add(OnFetchMovies()),
+    act: (bloc) => bloc.add(OnFetchPopularMovies()),
     expect: () => [
       PopularMoviesLoading(),
       PopularMoviesError('Server Failure'),

@@ -8,7 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import '../provider/tv_show_search_notifier_test.mocks.dart';
+import 'search_tv_shows_bloc_test.mocks.dart';
 
 @GenerateMocks([SearchTvShows])
 void main() {
@@ -18,7 +18,7 @@ void main() {
   setUp(() {
     mockSearchTvShows = MockSearchTvShows();
     searchTvShowsBloc = SearchTvShowsBloc(
-      mockSearchTvShows,
+      searchTvShows: mockSearchTvShows,
     );
   });
 
@@ -43,7 +43,7 @@ void main() {
           .thenAnswer((_) async => Right(tTvShowList));
       return searchTvShowsBloc;
     },
-    act: (bloc) => bloc.add(OnQuerySearch(tQuery)),
+    act: (bloc) => bloc.add(OnQuerySearchTvShows(tQuery)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       SearchTvShowsLoading(),
@@ -61,7 +61,7 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
       return searchTvShowsBloc;
     },
-    act: (bloc) => bloc.add(OnQuerySearch(tQuery)),
+    act: (bloc) => bloc.add(OnQuerySearchTvShows(tQuery)),
     expect: () => [
       SearchTvShowsLoading(),
       SearchTvShowsError('Server Failure'),

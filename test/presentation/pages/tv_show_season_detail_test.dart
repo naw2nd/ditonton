@@ -1,26 +1,38 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:bloc_test/bloc_test.dart';
+import 'package:ditonton/presentation/bloc/tv_show_season_detail_bloc.dart';
 import 'package:ditonton/presentation/pages/tv_show_season_detail_page.dart';
-import 'package:ditonton/presentation/provider/tv_show_season_detail_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
-import 'package:provider/provider.dart';
-
+import 'package:mocktail/mocktail.dart';
 import '../../dummy_data/tv_show_dummy_objects.dart';
-import 'tv_show_season_detail_test.mocks.dart';
 
-@GenerateMocks([TvShowSeasonDetailNotifier])
+class TvShowSeasonDetailEventFake extends Fake
+    implements TvShowSeasonDetailEvent {}
+
+class TvShowSeasonDetailStateFake extends Fake
+    implements TvShowSeasonDetailState {}
+
+class MockTvShowSeasonDetailBloc
+    extends MockBloc<TvShowSeasonDetailEvent, TvShowSeasonDetailState>
+    implements TvShowSeasonDetailBloc {}
+
 void main() {
-  late MockTvShowSeasonDetailNotifier mockNotifier;
+  late MockTvShowSeasonDetailBloc mockBlocTvShowSeasonDetailBloc;
   final seasonArgs = SeasonArgument(1, 1);
+
+  setUpAll(() {
+    registerFallbackValue(TvShowSeasonDetailEventFake());
+    registerFallbackValue(TvShowSeasonDetailStateFake());
+  });
+
   setUp(() {
-    mockNotifier = MockTvShowSeasonDetailNotifier();
+    mockBlocTvShowSeasonDetailBloc = MockTvShowSeasonDetailBloc();
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return ChangeNotifierProvider<TvShowSeasonDetailNotifier>.value(
-      value: mockNotifier,
+    return BlocProvider<TvShowSeasonDetailBloc>.value(
+      value: mockBlocTvShowSeasonDetailBloc,
       child: MaterialApp(
         home: body,
       ),
@@ -29,7 +41,8 @@ void main() {
 
   testWidgets('Page should display center progress bar when loading',
       (WidgetTester tester) async {
-    when(mockNotifier.tvShowSeasonState).thenReturn(RequestState.Loading);
+    when(() => mockBlocTvShowSeasonDetailBloc.state)
+        .thenReturn(TvShowSeasonDetailLoading());
 
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
@@ -44,8 +57,8 @@ void main() {
 
   testWidgets('Page should display ListView when data is loaded',
       (WidgetTester tester) async {
-    when(mockNotifier.tvShowSeasonState).thenReturn(RequestState.Loaded);
-    when(mockNotifier.tvShowSeason).thenReturn(testTvShowSeasonDetail);
+    when(() => mockBlocTvShowSeasonDetailBloc.state)
+        .thenReturn(TvShowSeasonDetailHasData(testTvShowSeasonDetail));
 
     final listViewFinder = find.byType(ListView);
 
@@ -58,8 +71,8 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(mockNotifier.tvShowSeasonState).thenReturn(RequestState.Error);
-    when(mockNotifier.message).thenReturn('Error message');
+    when(() => mockBlocTvShowSeasonDetailBloc.state)
+        .thenReturn(TvShowSeasonDetailError('Failed'));
 
     final textFinder = find.byKey(Key('error_message'));
 

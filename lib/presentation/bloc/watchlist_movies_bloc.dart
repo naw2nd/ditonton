@@ -9,8 +9,8 @@ part 'package:ditonton/presentation/bloc/event/watchlist_movies_event.dart';
 class WatchlistMoviesBloc extends Bloc<WatchlistMoviesEvent, WatchlistMoviesState> {
   final GetWatchlistMovies getWatchlistMovies;
 
-  WatchlistMoviesBloc(this.getWatchlistMovies) : super(WatchlistMoviesEmpty()) {
-    on<OnFetchMovies>((event, emit) async {
+  WatchlistMoviesBloc({required this.getWatchlistMovies}) : super(WatchlistMoviesEmpty()) {
+    on<OnFetchWatchlistMovies>((event, emit) async {
       emit(WatchlistMoviesLoading());
 
       final result = await getWatchlistMovies.execute();

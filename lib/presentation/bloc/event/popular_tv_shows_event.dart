@@ -7,4 +7,4 @@ abstract class PopularTvShowsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class OnFetchTvShows extends PopularTvShowsEvent {}
+class OnFetchPopularTvShows extends PopularTvShowsEvent {}

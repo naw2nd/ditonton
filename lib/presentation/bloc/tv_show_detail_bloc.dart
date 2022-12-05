@@ -9,7 +9,7 @@ part 'package:ditonton/presentation/bloc/event/tv_show_detail_event.dart';
 class TvShowDetailBloc extends Bloc<TvShowDetailEvent, TvShowDetailState> {
   final GetTvShowDetail getTvShowDetail;
 
-  TvShowDetailBloc(this.getTvShowDetail) : super(TvShowDetailEmpty()) {
+  TvShowDetailBloc({required this.getTvShowDetail}) : super(TvShowDetailEmpty()) {
     on<OnFetchTvShowDetail>((event, emit) async {
       emit(TvShowDetailLoading());
 
