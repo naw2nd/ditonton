@@ -103,13 +103,13 @@ void main() {
       await tester.tap(find.byIcon(Icons.tv));
       await tester.pumpAndSettle();
 
-      final secondItem = find.text('Result Tv Shows');
+      final secondItem = find.text('Tv Shows Result');
       expect(secondItem, findsOneWidget);
 
       await tester.tap(find.byIcon(Icons.movie));
       await tester.pumpAndSettle();
 
-      final thirdItem = find.text('Result Movies');
+      final thirdItem = find.text('Movies Result');
       expect(thirdItem, findsOneWidget);
 
       await di.locator.reset(dispose: true);

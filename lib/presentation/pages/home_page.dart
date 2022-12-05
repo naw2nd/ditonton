@@ -1,7 +1,7 @@
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie_dashboard_page.dart';
+import 'package:movies/movies.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/tv_show_dashboard_page.dart';
+import 'package:tv_shows/tv_shows.dart';
 import 'package:ditonton/presentation/pages/watchlist_page.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
