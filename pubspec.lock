@@ -95,7 +95,7 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: core
+      path: "modules/core"
       relative: true
     source: path
     version: "0.0.1"
@@ -293,7 +293,7 @@ packages:
   movies:
     dependency: "direct main"
     description:
-      path: movies
+      path: "modules/movies"
       relative: true
     source: path
     version: "0.0.1"
@@ -487,7 +487,7 @@ packages:
   tv_shows:
     dependency: "direct main"
     description:
-      path: tv_shows
+      path: "modules/tv_shows"
       relative: true
     source: path
     version: "0.0.1"
